@@ -59,7 +59,7 @@ async def compress_text(request: CompressRequest):
         "ratio": ratio,
         "rate": rate,
         "saving": saving,
-        "n_word_compressed": n_word_compressed
+        #"n_word_compressed": n_word_compressed
     }
 
     return response
