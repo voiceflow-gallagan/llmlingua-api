@@ -1,0 +1,7 @@
+llmlingua==0.2.1
+accelerate
+fastapi
+uvicorn
+pydantic
+tiktoken
+python-dotenv
