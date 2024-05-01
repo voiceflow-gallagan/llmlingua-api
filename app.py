@@ -10,9 +10,6 @@ load_dotenv()
 
 app = FastAPI()
 
-""" llm_lingua = PromptCompressor()
-compressed_prompt = llm_lingua.compress_prompt(prompt, instruction="", question="", target_token=200) """
-
 # Load the pre-trained model
 compressor = PromptCompressor(
     model_name="microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank",
@@ -48,19 +45,20 @@ async def compress_text(request: CompressRequest):
     )
     print(results)
     compressed_prompt = results["compressed_prompt"]
+    origin_tokens = results["origin_tokens"]
+    compressed_tokens = results["compressed_tokens"]
+    ratio = results["ratio"]
+    rate = results["rate"]
+    saving = results["saving"]
     n_word_compressed = len(tokenizer.encode(compressed_prompt))
-
-    word_sep = "\t\t|\t\t"
-    label_sep = " "
-    lines = results["fn_labeled_original_prompt"].split(word_sep)
-    preserved_tokens = []
-    for line in lines:
-        word, label = line.split(label_sep)
-        preserved_tokens.append((word, '+') if label == '1' else (word, None))
 
     response = {
         "compressed_prompt": compressed_prompt,
-        #"preserved_tokens": preserved_tokens,
+        "origin_tokens": origin_tokens,
+        "compressed_tokens": compressed_tokens,
+        "ratio": ratio,
+        "rate": rate,
+        "saving": saving,
         "n_word_compressed": n_word_compressed
     }
 
