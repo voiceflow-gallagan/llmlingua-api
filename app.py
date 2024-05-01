@@ -3,7 +3,7 @@ import os
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from llmlingua import PromptCompressor
-import tiktoken
+# import tiktoken
 
 # Load environment variables from .env file
 load_dotenv()
@@ -16,7 +16,7 @@ compressor = PromptCompressor(
     use_llmlingua2=True,
     device_map="cpu"
 )
-tokenizer = tiktoken.encoding_for_model("gpt-4")
+#tokenizer = tiktoken.encoding_for_model("gpt-4")
 
 class CompressRequest(BaseModel):
     text: str
@@ -40,7 +40,7 @@ async def compress_text(request: CompressRequest):
         rate=compression_rate,
         force_tokens=force_tokens,
         chunk_end_tokens=chunk_end_tokens,
-        return_word_label=False,
+        return_word_label=True,
         drop_consecutive=True
     )
     print(results)
@@ -50,7 +50,7 @@ async def compress_text(request: CompressRequest):
     ratio = results["ratio"]
     rate = results["rate"]
     saving = results["saving"]
-    n_word_compressed = len(tokenizer.encode(compressed_prompt))
+    #n_word_compressed = len(tokenizer.encode(compressed_prompt))
 
     response = {
         "compressed_prompt": compressed_prompt,
