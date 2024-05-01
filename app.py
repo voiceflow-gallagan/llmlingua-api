@@ -40,7 +40,7 @@ async def compress_text(request: CompressRequest):
         rate=compression_rate,
         force_tokens=force_tokens,
         chunk_end_tokens=chunk_end_tokens,
-        return_word_label=True,
+        return_word_label=False,
         drop_consecutive=True
     )
     print(results)
