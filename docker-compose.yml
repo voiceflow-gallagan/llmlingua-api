@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3030:3030"
+    volumes:
+      - .:/app
+    environment:
+      - PORT=3030
+    restart: always

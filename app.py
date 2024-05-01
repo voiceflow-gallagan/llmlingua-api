@@ -1,4 +1,4 @@
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 import os
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
@@ -66,5 +66,6 @@ async def compress_text(request: CompressRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    port = int(os.getenv("PORT", 8000))
+    #port = int(os.getenv("PORT", 8000))
+    port = int(os.eviron.get("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
