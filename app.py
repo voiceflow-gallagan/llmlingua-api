@@ -57,7 +57,7 @@ async def compress_text(request: CompressRequest):
 
     response = {
         "compressed_prompt": compressed_prompt,
-        "preserved_tokens": preserved_tokens,
+        #"preserved_tokens": preserved_tokens,
         "n_word_compressed": n_word_compressed
     }
 
