@@ -1,12 +1,7 @@
-#from dotenv import load_dotenv
 import os
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from llmlingua import PromptCompressor
-# import tiktoken
-
-# Load environment variables from .env file
-# load_dotenv()
 
 app = FastAPI()
 
@@ -16,7 +11,6 @@ compressor = PromptCompressor(
     use_llmlingua2=True,
     device_map="cpu"
 )
-#tokenizer = tiktoken.encoding_for_model("gpt-4")
 
 class CompressRequest(BaseModel):
     text: str
@@ -50,7 +44,6 @@ async def compress_text(request: CompressRequest):
     ratio = results["ratio"]
     rate = results["rate"]
     saving = results["saving"]
-    #n_word_compressed = len(tokenizer.encode(compressed_prompt))
 
     response = {
         "compressed_prompt": compressed_prompt,
@@ -58,14 +51,12 @@ async def compress_text(request: CompressRequest):
         "compressed_tokens": compressed_tokens,
         "ratio": ratio,
         "rate": rate,
-        "saving": saving,
-        #"n_word_compressed": n_word_compressed
+        "saving": saving
     }
 
     return response
 
 if __name__ == "__main__":
     import uvicorn
-    #port = int(os.getenv("PORT", 8000))
     port = int(os.environ.get("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)

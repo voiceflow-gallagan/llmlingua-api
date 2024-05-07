@@ -1,7 +1,5 @@
-llmlingua==0.2.1
+llmlingua
 accelerate
 fastapi
 uvicorn
 pydantic
-tiktoken
-python-dotenv
