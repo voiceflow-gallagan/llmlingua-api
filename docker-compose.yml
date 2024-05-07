@@ -1,12 +1,12 @@
-version: '3'
-
 services:
-  app:
+  llm-lingua-api:
     build: .
+    restart: unless-stopped
+    image: 'llm-lingua-api'
+    container_name: 'llm-lingua-api'
     ports:
-      - "3030:3030"
+      - '${PORT}:${PORT}'
     volumes:
       - .:/app
     environment:
-      - PORT=3030
-    restart: always
+      - PORT=${PORT}
