@@ -5,9 +5,11 @@ from llmlingua import PromptCompressor
 
 app = FastAPI()
 
-# Load the pre-trained model
+model = str(os.environ.get("MODEL", "microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank"))
+
+# Load the model
 compressor = PromptCompressor(
-    model_name="microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank",
+    model_name=model,
     use_llmlingua2=True,
     device_map="cpu"
 )
@@ -37,13 +39,14 @@ async def compress_text(request: CompressRequest):
         return_word_label=False,
         drop_consecutive=True
     )
+    print(model)
     print(results)
     compressed_prompt = results["compressed_prompt"]
     origin_tokens = results["origin_tokens"]
     compressed_tokens = results["compressed_tokens"]
     ratio = results["ratio"]
     rate = results["rate"]
-    saving = results["saving"]
+    #saving = results["saving"]
 
     response = {
         "compressed_prompt": compressed_prompt,
@@ -51,7 +54,7 @@ async def compress_text(request: CompressRequest):
         "compressed_tokens": compressed_tokens,
         "ratio": ratio,
         "rate": rate,
-        "saving": saving
+        #"saving": saving
     }
 
     return response

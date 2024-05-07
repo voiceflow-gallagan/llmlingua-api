@@ -10,3 +10,4 @@ services:
       - .:/app
     environment:
       - PORT=${PORT}
+      - MODEL=${MODEL}
