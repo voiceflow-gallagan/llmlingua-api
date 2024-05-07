@@ -2,6 +2,9 @@ import os
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from llmlingua import PromptCompressor
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
+
 
 app = FastAPI()
 

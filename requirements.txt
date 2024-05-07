@@ -1,4 +1,5 @@
 llmlingua
+warnings
 accelerate
 fastapi
 uvicorn
