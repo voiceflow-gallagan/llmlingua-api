@@ -3,6 +3,14 @@
 This repository contains a FastAPI application designed to compress prompts using the `llmlingua` library and a pre-trained model.
 
 More info about [Microsoft LLMLingua-2](https://llmlingua.com/llmlingua2.html).
+Their LLMLingua Github repo: https://github.com/microsoft/LLMLingua
+
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- You have Docker & Docker Compose installed (see [Docker's official installation guide](https://docs.docker.com/desktop/)).
+
 
 ## Installation
 

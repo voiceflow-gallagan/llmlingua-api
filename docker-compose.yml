@@ -6,6 +6,11 @@ services:
     container_name: 'llm-lingua-api'
     ports:
       - '${PORT}:${PORT}'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${PORT}/health"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
     volumes:
       - .:/app
     environment:

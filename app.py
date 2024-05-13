@@ -23,6 +23,10 @@ class CompressRequest(BaseModel):
     force_tokens: list = ['\n']
     chunk_end_tokens: list = ['.', '\n']
 
+@app.get('/health')
+def health_check():
+    return {"status": "OK"}
+
 @app.post("/compress")
 async def compress_text(request: CompressRequest):
     original_prompt = request.text
