@@ -1,7 +1,7 @@
 import os
-from fastapi import FastAPI, Request
-from pydantic import BaseModel
-from llmlingua import PromptCompressor
+from fastapi import FastAPI # type: ignore
+from pydantic import BaseModel # type: ignore
+from llmlingua import PromptCompressor # type: ignore
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 
@@ -46,8 +46,7 @@ async def compress_text(request: CompressRequest):
         return_word_label=False,
         drop_consecutive=True
     )
-    print(model)
-    print(results)
+
     compressed_prompt = results["compressed_prompt"]
     origin_tokens = results["origin_tokens"]
     compressed_tokens = results["compressed_tokens"]
@@ -67,7 +66,7 @@ async def compress_text(request: CompressRequest):
     return response
 
 if __name__ == "__main__":
-    import uvicorn
+    import uvicorn # type: ignore
     port = int(os.environ.get("PORT", 8080))
     uvicorn.run(app, host="0.0.0.0", port=port)
     #uvicorn.run(app, host="0.0.0.0", port=port, ssl_keyfile="key.pem", ssl_certfile="cert.pem")
